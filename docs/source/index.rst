@@ -14,7 +14,7 @@ Contents
 .. toctree::
 
     installation
-    exercises
+    exercises/index
 ..
 
 
