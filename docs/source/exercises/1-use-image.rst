@@ -79,15 +79,15 @@ First of all, we should note that the docker container has some identifiers of i
 
 We'll learn two ways to download the files: through Docker Desktop and through the command line.
 
-First, open Docker Desktop and ind your container in the ``containers`` tab. Click on it, and then click the ``files``
-tab. From here - you should be able to browse the container's filesystem and download whichever files you choose with a
-right click or by dragging and dropping in a folder on your computer.
+* First, open Docker Desktop and ind your container in the ``containers`` tab. Click on it, and then click the ``files``
+  tab. From here - you should be able to browse the container's filesystem and download whichever files you choose with
+  a right click or by dragging and dropping in a folder on your computer.
 
-Now, let's try using the command line interface. Open your terminal and try running the following command::
+* Now, let's try using the command line interface. Open your terminal and try running the following command::
 
     docker cp <container identifier>:/tmp/demo_sam <an existing directory on your computer>
 
-This should download the output files to the given directory on your computer.
+  This should download the output files to the given directory on your computer.
 
 Both methods work, but I find that it's more convenient to do most things with a drag & drop, but substantially quicker
 to transfer large files through the CLI. Also, both method would work for uploading files to the container just as well.
