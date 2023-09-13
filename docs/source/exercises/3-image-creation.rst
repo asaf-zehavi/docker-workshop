@@ -50,8 +50,47 @@ leave unintentional changes that can make for some hard-to-fix bugs.
 
 That's why we have a better solution - dockerfiles!
 
+Docker files are a sort of recipe for making docker images - you specify all the required steps to make your docker
+image in a dockerfile, and then the docker engine builds the image.
+
+Here is an example for a possible dockerfile that recreates the image we created with ``docker commit``::
+
+    FROM pytorch/pytorch:latest
+    RUN apt update
+    RUN apt install -y curl g++ unzip
+    RUN curl -o PyTorch-BigGraph-main.zip https://codeload.github.com/facebookresearch/PyTorch-BigGraph/zip/a11ff0eb644b7e4cb569067c280112b47f40ef62
+    RUN unzip PyTorch-BigGraph-main.zip
+    RUN rm PyTorch-BigGraph-main.zip
+    RUN PBG_INSTALL_CPP=1 pip install PyTorch-BigGraph-a11ff0eb644b7e4cb569067c280112b47f40ef62/
+    RUN rm -rf PyTorch-BigGraph-a11ff0eb644b7e4cb569067c280112b47f40ef62/
+
+This will work as a content for a dockerfile. However, each RUN line in a dockerfile will create what's called a "layer"
+in the docker image. Each layer is downloaded separately, and having more layers may make the image heavier and less
+efficient to upload and download. Thus, it is common practice to bundle related command together in the same line,
+particularly cleanup commands. So, a better implementation could be::
+
+    FROM pytorch/pytorch:latest
+    RUN apt update && apt install -y curl g++ unzip && apt clean
+    RUN curl -o PyTorch-BigGraph-main.zip https://codeload.github.com/facebookresearch/PyTorch-BigGraph/zip/a11ff0eb644b7e4cb569067c280112b47f40ef62 && unzip PyTorch-BigGraph-main.zip && rm PyTorch-BigGraph-main.zip && PBG_INSTALL_CPP=1 pip install PyTorch-BigGraph-a11ff0eb644b7e4cb569067c280112b47f40ef62/ && rm -rf PyTorch-BigGraph-a11ff0eb644b7e4cb569067c280112b47f40ef62/
+
+Now, all you need to do is write this to a file on your computer. Usually dockerfiles end with the extension
+``.dockerfile`` (how creative...). Once you've created the file on your computer - you can build the image using it::
+
+    docker build <path to dockerfile> pytorch-biggraph:2.0 .
+
+This will create a docker image according to the "recipe" in your dockerfile, and tag it with the name
+"pytorch-biggraph" and the version 2.0.
+
+Now, check that this docker works by running the same command::
+
+    torchbiggraph_example_fb15k
+
 Uploading to the Repository
 ---------------------------
 
 Running on WEXAC
 ----------------
+
+Summarry
+--------
+End note about docker compose
