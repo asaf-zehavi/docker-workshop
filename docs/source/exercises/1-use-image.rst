@@ -59,7 +59,7 @@ terminal to this container using the Docker Desktop GUI. In this terminal, run t
 
     humann_databases --download chocophlan DEMO humann_dbs
     humann_databases --download uniref DEMO_diamond humann_dbs
-    wget https://github.com/biobakery/humann/raw/master/examples/demo.sam
+    wget -O demo.sam https://github.com/biobakery/humann/raw/master/examples/demo.sam
     humann --input demo.sam --output demo_sam
 
 These commands download some demo databases for HUMAnN and a demo input file. The final line runs HUMAnN on the input
