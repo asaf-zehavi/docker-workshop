@@ -36,5 +36,34 @@ You can see the docker image is identified by 3 different identifiers:
 Run it Interactively
 --------------------
 
+Now, we want to use the docker image we downloaded to create a docker container and run our commands in it. The easiest
+way would be using the ``run`` command. This command takes a given docker image, creates a container from it ,and runs
+the container with your parameters. In this case, we want to run the container interactively. In order to do that - run
+the following command::
+
+    docker run --interactive --tty <docker identifier>
+
+Use one of the identifiers discussed in the previous section. Alternatively, you can use the shorthand version::
+
+    docker run -it <docker identifier>
+
+Now, the prompt of your shell should change - all the commands you run from here on out will run within the newly
+created docker container. Try it if you like.
+
+Next, lets have a look at our new container. Open the "Docker Desktop" application, and check the ``containers`` tab -
+you should see your new container there. You could also open another terminal and run one of these commands to get the
+same information: ``docker ps`` or ``docker container ls``.
+
+Finally, let's get down to business and run HUMAnN. Open the terminal you've run the ``docker run`` in, or open a new
+terminal to this container using the Docker Desktop GUI. In this terminal, run the following commands::
+
+    humann_databases --download chocophlan DEMO humann_dbs
+    humann_databases --download uniref DEMO_diamond humann_dbs
+    wget https://github.com/biobakery/humann/raw/master/examples/demo.sam
+    humann --input demo.sam --output demo_sam
+
+These commands download some demo databases for HUMAnN and a demo input file. The final line runs HUMAnN on the input
+file. If you've done everything correctly - the commands should run without a hitch.
+
 Copy Files to & From the Container
 ----------------------------------
