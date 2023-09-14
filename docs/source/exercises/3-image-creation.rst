@@ -85,6 +85,10 @@ Now, check that this docker works by running the same command::
 
     torchbiggraph_example_fb15k
 
+When you want to create your own dockerfile, note that there may be other useful commands besides ``FROM`` & ``RUN``.
+You can find a convenient list in this
+`cheat sheet <https://students.mimuw.edu.pl/~zbyszek/bezp/docker/4855175-docker-cheatsheet-r4v2.pdf>`_.
+
 Uploading to the Repository
 ---------------------------
 
