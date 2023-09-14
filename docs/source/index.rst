@@ -28,3 +28,4 @@ A Neat Docker Cheat Sheet
 Some Useful Dockers for our Biological Purposes
     | https://hub.docker.com/u/biobakery (Includes dockers for Metaphlan & more)
     | https://hub.docker.com/u/staphb (Includes dockers for Kraken & more)
+    | https://catalog.ngc.nvidia.com/containers (Optimized dockers for Nvidia GPUs)
