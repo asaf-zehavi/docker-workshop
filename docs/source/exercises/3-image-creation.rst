@@ -88,9 +88,38 @@ Now, check that this docker works by running the same command::
 Uploading to the Repository
 ---------------------------
 
+Now, before we can use our handy dandy new docker image to run our WEXAC jobs, we need to make them available for the
+machines running the WEXAC tasks. Remember, WEXAC downloads the image from a remote repository before starting the
+task - therefore the image must be on a remote repository before the job starts. Luckily, the WEXAC team created a
+docker repository inside our network just for that.
+
+The first step towards uploading out image to the repository is telling WEXAC that the image is related to said
+repository. To do that we add another tag to the same image (yes we can do that). This tag will include the URL of
+WEXAC's remote repository. Like so::
+
+    docker tag pytorch-biggraph:2.0 ops.wexac.weizmann.ac.il:5000/zeevid/asafze/pytorch-biggraph:2.0
+
+This will tag the image we created in the last section with another tag linked to the remote repository
+(``pytorch-biggraph:2.0``). Note that I also added an inner path so that all our images don't mix (``zeevid/asafze``).
+Please do the same.
+
+Now that the docker engine knows where this image should go - we can upload it. Uploading in docker lingo is "pushing"::
+
+    docker push ops.wexac.weizmann.ac.il:5000/zeevid/asafze/pytorch-biggraph:2.0
+
 Running on WEXAC
 ----------------
 
-Summarry
---------
-End note about docker compose
+And now, for the grand finale. Run the same command you used in the previous section over WEXAC with the image you
+uploaded. Note that the image's location as seen by a WEXAC machine will be something like this:
+``ops:5000/zeevid/asafze/pytorch-biggraph:2.0`` *(Of course you can also write the full URL  - ``ops.wexac.weizmann.ac.il:5000/zeevid/asafze/pytorch-biggraph:2.0``)*.
+
+Summary
+-------
+So now you know how to create a new docker image and how to use it - congratulations!
+
+This concludes the basic part of the tutorial. The next part is just a neat thing that can speed your work process, and
+the fifth part is more a bonus tutorial in the context of our use-cases.
+
+Also, it's worth mentioning that there's another method to create docker images - it's called "docker compose", but I've
+decided to leave it out of these basic tutorials.
