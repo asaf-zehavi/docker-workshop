@@ -12,6 +12,10 @@ metagenomic or metatranscriptomic sequencing data". We will run it on some demo 
 
 Pull a Docker Image
 -------------------
+
+Before running anything, you need to run the docker engine. The easiest way is to start the docker desktop program and
+let it run in the background.
+
 First of all, we'll need to get the docker image we want to use. For this we'll use an image BioBakery published for
 HUMAnN. You could search for it yourself in the `Docker Hub <https://hub.docker.com/search?q=>`_, or you can just click
 on this direct link for now: https://hub.docker.com/r/biobakery/humann.

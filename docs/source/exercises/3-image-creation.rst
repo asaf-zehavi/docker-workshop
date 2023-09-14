@@ -104,8 +104,9 @@ WEXAC's remote repository. Like so::
     docker tag pytorch-biggraph:2.0 ops.wexac.weizmann.ac.il:5000/zeevid/asafze/pytorch-biggraph:2.0
 
 This will tag the image we created in the last section with another tag linked to the remote repository
-(``pytorch-biggraph:2.0``). Note that I also added an inner path so that all our images don't mix (``zeevid/asafze``).
-Please do the same.
+(``pytorch-biggraph:2.0``). It's important to update the version tag everytime you change the image, as there's some
+unpredictable behavior when you upload a new image with the exact same tag. Note that I also added an inner path so that
+all our images don't mix (``zeevid/asafze``). Please do the same.
 
 Now that the docker engine knows where this image should go - we can upload it. Uploading in docker lingo is "pushing"::
 
